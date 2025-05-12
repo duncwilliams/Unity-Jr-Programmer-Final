@@ -4,7 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
 
-    public float speed = 2;
+    public float speed = 2f;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,5 +22,17 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         Vector3 horizontalMovement = horizontalInput * transform.right * speed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + horizontalMovement);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Good"))
+        {
+            Destroy(other);
+        }
+        else if (other.CompareTag("Bad"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
