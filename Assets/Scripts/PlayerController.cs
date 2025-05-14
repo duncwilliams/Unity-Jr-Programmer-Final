@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
+    private MainManager mainManager;
 
     public float speed = 2f;
     
@@ -10,6 +11,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        mainManager = GameObject.Find("Main Manager").GetComponent<MainManager>();
     }
 
     void FixedUpdate()
@@ -28,11 +30,13 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Good"))
         {
+            mainManager.AddPoints(1);
             Destroy(other);
         }
-        else if (other.CompareTag("Bad"))
+        else if (other.CompareTag("Bad") || other.CompareTag("Death"))
         {
-            Destroy(gameObject);
+            mainManager.GameOver();
+            gameObject.SetActive(false);
         }
     }
 }
