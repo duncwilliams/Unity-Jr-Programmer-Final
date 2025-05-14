@@ -15,6 +15,13 @@ public class SpawnManager : MonoBehaviour
         InvokeRepeating("SpawnObstacles", spawnDelay, spawnDelay);
     }
 
+    public void SpeedUp(float level)
+    {
+        CancelInvoke("SpawnObstacles");
+        spawnDelay /= level;
+        InvokeRepeating("SpawnObstacles", spawnDelay, spawnDelay);
+    }
+
     private void SpawnObstacles()
     {
         // Set random spawn location and random object index

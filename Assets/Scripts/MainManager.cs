@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,10 +8,14 @@ public class MainManager : MonoBehaviour
 {
     private Button backToMenuButton;
     private Button restartButton;
+
     private int points;
+    public float level;
     
     public TextMeshProUGUI scoreCounterText;
     public GameObject gameOverText;
+    public GameObject speedUpText;
+    public SpawnManager spawnManager;
 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -19,6 +24,7 @@ public class MainManager : MonoBehaviour
         CreateButtons();
 
         points = 0;
+        level = 1f;
     }
 
     private void CreateButtons()
@@ -57,6 +63,33 @@ public class MainManager : MonoBehaviour
         {
             scoreCounterText.text = points + " Points";
         }
+
+        if (points % 10 == 0)
+        {
+            LevelUp();
+        }
+    }
+
+    public void LevelUp()
+    {
+        level += 0.25f;
+        StartCoroutine("DisplaySpeedUpText");
+        spawnManager.SpeedUp(level);
+    }
+
+    IEnumerator DisplaySpeedUpText()
+    {
+        speedUpText.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        speedUpText.SetActive(false);
+        yield return new WaitForSeconds(0.2f);
+        speedUpText.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        speedUpText.SetActive(false);
+        yield return new WaitForSeconds(0.2f);
+        speedUpText.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        speedUpText.SetActive(false);
     }
 
     public void GameOver()
