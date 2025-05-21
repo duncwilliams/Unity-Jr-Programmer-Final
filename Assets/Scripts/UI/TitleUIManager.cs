@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class TitleUIManager : MonoBehaviour
 {
     private Button startButton;
     private Button exitButton;
@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
         CreateButtons();
     }
 
-    void CreateButtons()
+    private void CreateButtons()
     {
         // Initialize buttons
         startButton = GameObject.Find("Start Button").GetComponent<Button>();
@@ -25,12 +25,12 @@ public class UIManager : MonoBehaviour
         exitButton.onClick.AddListener(ExitGame);
     }
 
-    void StartGame()
+    private void StartGame()
     {
         SceneManager.LoadScene("Main");
     }
 
-    void ExitGame()
+    private void ExitGame()
     {
         #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
