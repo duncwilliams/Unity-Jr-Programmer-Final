@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    protected float speed = 1000f;
+    // ENCAPSULATION
+    protected float speed { private get; set; }
     protected float pointValue;
     protected Rigidbody rb;
 
@@ -21,7 +22,7 @@ public class Obstacle : MonoBehaviour
 
     public virtual void OnTriggerEnter(Collider other)
     {
-        // point adding logic goes here
+        
     }
 
     public virtual void Flow() 

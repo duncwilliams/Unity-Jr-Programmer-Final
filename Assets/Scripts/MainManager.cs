@@ -107,6 +107,7 @@ public class MainManager : MonoBehaviour
         spawnManager.SpeedUp(level);
     }
 
+    // ABSTRACTION
     IEnumerator FlashText(GameObject text, int flashTimes, float waitTime)
     {
         for (int i = 0; i < flashTimes; i++)
